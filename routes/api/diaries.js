@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    Diary.findById(req.params.id)
+    Diary.find({userId: req.params.id})
         .sort({ date: -1 })
         .then(diaries => res.json(diaries))
 });
