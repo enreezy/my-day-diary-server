@@ -23,7 +23,7 @@ app.use('/api/diaries', diaries);
 app.use('/api/auth/', auth);
 
 app.use("/", (req, res) => {
-    res.send("My Day");
+    res.send("My Day Diary");
 });
 
 const PORT = process.env.SERVER_PORT || 8085;
