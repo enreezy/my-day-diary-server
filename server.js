@@ -27,5 +27,5 @@ app.use("/", (req, res) => {
     res.send("My Day Diary");
 });
 
-const PORT = process.env.SERVER_PORT || 8085;
+const PORT = process.env.SERVER_PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
