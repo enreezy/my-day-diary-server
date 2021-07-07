@@ -29,18 +29,22 @@ router.post('/login', (req, res) => {
     User.findOne({username: req.body.username, password: req.body.password})
         .sort({ date: -1 })
         .then(user => {
-            const id = user._id;
-            const token = jwt.sign({id}, "jwtSecret", {
-                expiresIn: 300,
-            });
+           if(user) {
+                const id = user._id;
+                const token = jwt.sign({id}, "jwtSecret", {
+                    expiresIn: 300,
+                });
 
-            const details = {
-                id: user._id,
-                username: user.username,
-                name: user.name
-            };
+                const details = {
+                    id: user._id,
+                    username: user.username,
+                    name: user.name
+                };
 
-            res.json({ auth: true, token: token, result: details});
+                res.json({ auth: true, token: token, result: details});
+           }else{
+                res.json({ auth: false, invalid: true});
+           }
         });
 });
 

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -11,10 +12,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const diaries = require('./routes/api/diaries');
 const auth = require('./routes/api/auth');
 
-const db = mongoose.connect("mongodb://localhost:27017/myday", { useNewUrlParser: true });
+const db = process.env.MONGODB_URI;
 
 mongoose
-    .connect(db)
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB Connected..."))
     .catch((err) => console.log(err));
 
